@@ -190,7 +190,7 @@ class App(QWidget):
         checkbox.setFont(textfont)
         checkbox.setChecked(False)
         checkbox.stateChanged.connect(lambda:self.sensorButtonState(checkbox))
-        self.layout.addWidget(checkbox,top,left,1,1,Qt.AlignHCenter)
+        self.config_layout.addWidget(checkbox)
 
     def rmvSensorTab(self, sensor):
         '''
@@ -876,11 +876,6 @@ def receive_queue_data():
     channel.queue_declare(queue='toGUI')
     method_frame, header_frame, body = channel.basic_get(queue='toGUI')
     if body is not None:
-<<<<<<< HEAD
-        # message from d3s seems to come back as bytes...
-=======
-        # message from d3s is coming back as bytes
->>>>>>> d4b986b040e7ae16a0f57b5a4363212f294f6628
         if type(body) is bytes:
             body = body.decode("utf-8")
         message = json.loads(body)
